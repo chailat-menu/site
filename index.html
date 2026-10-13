@@ -1,0 +1,616 @@
+﻿<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chailat — меню</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3EAD3; --card:#F9F3E3; --ink:#262A22; --muted:#6F6A52;
+  --sage:#566A48; --sage-soft:#E7E3C7; --line:#D9CCAA; --on-sage:#F9F3E3;
+  --serif:"Lora",Georgia,"Times New Roman",serif;
+  --sans:"Montserrat","Helvetica Neue",Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{overflow-x:clip;height:100%;-webkit-text-size-adjust:100%}
+body{overflow-x:clip;margin:0;min-height:100%;background-color:#25211f;background-image:url('photos/baner.jpeg');background-position:center;background-size:cover;background-attachment:fixed;color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.45}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 150px}
+
+/* language dropdown */
+.lang{position:relative;flex:0 0 auto}
+.lang-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 85%,transparent);border-radius:999px;padding:0 12px 0 14px;min-height:36px;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.06em}
+.lang-btn svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s}
+.lang.open .lang-btn svg{transform:rotate(180deg)}
+.lang-menu{display:none;position:absolute;right:0;top:calc(100% + 6px);z-index:60;min-width:130px;margin:0;padding:6px;list-style:none;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(60,50,20,.18)}
+.lang.open .lang-menu{display:block}
+.lang-menu button{display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;border:0;background:transparent;border-radius:10px;padding:0 12px;min-height:40px;font-family:var(--sans);font-size:13px;font-weight:500;text-align:left}
+.lang-menu button:hover{background:var(--sage-soft)}
+.lang-menu button[aria-selected="true"]{color:var(--sage);font-weight:700}
+.lang-menu button[aria-selected="true"]::after{content:"✓"}
+
+/* HOME */
+.hero{position:relative;text-align:center;padding:16px 16px 24px;margin:0 -16px 0;background:transparent}
+.hero-top{position:relative;z-index:2;display:flex;justify-content:flex-end}
+.hero .lang-btn{background:rgba(249,243,227,.94);box-shadow:0 3px 14px rgba(0,0,0,.2)}
+.sprig{position:absolute;color:var(--sage);opacity:.55;width:120px;height:auto;pointer-events:none}
+.sprig.a{left:-22px;top:46px}
+.sprig.b{right:-22px;top:150px;transform:scaleX(-1) rotate(8deg)}
+.logo{position:relative;margin:clamp(56px,16vw,100px) 0 0;font-family:var(--sans);font-weight:300;font-size:clamp(36px,12vw,58px);letter-spacing:.22em;padding-left:.22em;line-height:1;color:#fff;text-shadow:0 3px 16px rgba(0,0,0,.9)}
+.welcome{position:relative;margin:0 auto;padding:8px 18px 0;max-width:44ch;background:transparent;font-size:15px;line-height:1.55;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.hint{position:relative;margin:0 auto;padding:9px 18px 15px;max-width:44ch;background:transparent;font-size:14px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.95)}
+.gh{margin:28px 0 12px;font-family:var(--sans);font-weight:400;font-size:13px;letter-spacing:.28em;text-align:center;color:#fff;text-shadow:0 1px 7px rgba(0,0,0,.85)}
+.grid{display:grid;grid-template-columns:1fr;gap:10px;padding:8px;border:1px solid var(--line);border-radius:20px;background:rgba(249,243,227,.96);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+.card{position:relative;display:flex;align-items:center;justify-content:center;min-height:135px;padding:16px;border:0;border-radius:16px;overflow:hidden;isolation:isolate;text-align:center;color:#fff;background-color:#3b3a2c;background-size:cover;background-position:center;transition:transform .15s}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(20,16,8,.42),rgba(20,16,8,.5))}
+.card:active{transform:scale(.985)}
+.card .bgico{position:absolute;z-index:-2;right:-14px;bottom:-22px;width:130px;height:130px;color:#fff;opacity:.12}
+.card .bgico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.card.c0{background-image:linear-gradient(135deg,#8a6a3c,#4a3820)}
+.card.c1{background-image:linear-gradient(135deg,#566A48,#2f3d28)}
+.card.c2{background-image:linear-gradient(135deg,#a0763f,#55381a)}
+.card.c3{background-image:linear-gradient(135deg,#6f7d52,#394428)}
+.card.c4{background-image:linear-gradient(135deg,#8a5a3a,#47281a)}
+.card.c5{background-image:linear-gradient(135deg,#9a7b45,#4e3b1c)}
+.ico{width:44px;height:44px;color:var(--sage)}
+.ico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ct{font-family:var(--sans);font-weight:500;font-size:clamp(18px,5.4vw,22px);letter-spacing:.04em;line-height:1.25;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.45)}
+.cn{position:absolute;top:14px;right:14px;min-width:26px;height:26px;padding:0 8px;border-radius:13px;background:var(--sage-soft);color:var(--sage);display:grid;place-items:center;font-family:var(--sans);font-size:12px;font-weight:600}
+.info{margin-top:30px;padding:8px 18px 16px;border:1px solid var(--line);border-radius:22px;background:color-mix(in srgb,var(--card) 72%,var(--paper));overflow:hidden}
+.info-row{display:grid;grid-template-columns:54px 1fr;align-items:center;gap:16px;padding:17px 0;border-bottom:1px solid var(--line)}
+.info-ico{width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:var(--sage);color:var(--on-sage)}
+.info-ico svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.info small{display:block;font-family:var(--sans);font-size:13px;color:var(--muted);margin-bottom:4px}
+.info b{font-family:var(--sans);font-size:15px;font-weight:500;line-height:1.4}
+.info b a:hover{text-decoration:underline;text-underline-offset:3px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.links a{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:var(--paper);color:var(--sage);font-family:var(--sans);font-weight:500;font-size:14px;transition:transform .15s,background .15s}
+.links a:hover{background:var(--sage-soft);transform:translateY(-1px)}
+.links svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* LIST */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin:0 -16px;background:var(--paper);border-bottom:1px solid var(--line);border-radius:0 0 18px 18px;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.top-row{display:flex;align-items:center;gap:8px;padding:8px 16px 4px}
+.back{flex:0 0 auto;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:var(--card)}
+.back svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.top h1{flex:1;margin:0;font-family:var(--sans);font-weight:500;font-size:17px;line-height:1.2;overflow:hidden;text-overflow:ellipsis}
+.chips-in{display:flex;gap:8px;overflow-x:auto;padding:8px 16px 10px;scrollbar-width:none}
+.chips-in::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:0 15px;min-height:36px;display:inline-flex;align-items:center;font-family:var(--sans);font-size:13px;font-weight:500;white-space:nowrap;background:transparent}
+.chip[aria-current="true"]{background:var(--sage);border-color:var(--sage);color:var(--on-sage)}
+.sub{display:flex;align-items:center;gap:14px;margin:26px 0 4px;font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:.12em;color:#fff;text-shadow:0 1px 7px rgba(0,0,0,.9)}
+.sub::before,.sub::after{content:"";flex:1;height:1px;background:rgba(249,243,227,.72)}
+.item{display:grid;grid-template-columns:76px 1fr auto;gap:12px;align-items:center;margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:20px;background:rgba(249,243,227,.96);box-shadow:0 5px 16px rgba(20,16,10,.2)}
+.ph{position:relative;width:76px;height:76px;border-radius:16px;overflow:hidden;background:var(--sage-soft);border:1px solid var(--line);display:grid;place-items:center;color:var(--sage)}
+.ph svg{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.intro{margin:18px 0 0;padding:16px 18px;border-radius:18px;background:var(--card);border:1px solid var(--line);text-align:center}
+.intro h2{margin:0 0 6px;font-family:var(--sans);font-weight:500;font-size:14px;letter-spacing:.2em;color:var(--sage)}
+.intro p{margin:0;font-size:15px;line-height:1.5;color:var(--ink)}
+.welcome{position:relative;margin:22px auto 0;max-width:44ch;font-size:15px;line-height:1.55;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.95)}
+.hook{margin:36px 0 0;padding:26px 16px;text-align:center;border-top:1px solid rgba(249,243,227,.72)}
+.hook p{margin:0;font-size:clamp(20px,6vw,26px);font-style:italic;line-height:1.35;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.hook b{display:block;margin-top:8px;font-family:var(--sans);font-weight:400;font-style:normal;font-size:clamp(22px,7vw,30px);letter-spacing:.24em;padding-left:.24em;color:#F3EAD3;text-shadow:0 2px 8px rgba(0,0,0,.9)}
+.item:last-child{border-bottom:1px solid var(--line)}
+.nm{font-size:16px;font-weight:500;line-height:1.3;color:var(--ink)}
+.pr{margin-top:2px;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--sage);font-variant-numeric:tabular-nums}
+.pr.na{color:var(--muted);font-weight:500}
+.ctl{display:flex;justify-content:flex-end}
+.add{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--sage);background:transparent;color:var(--sage);font-size:24px;line-height:1;display:grid;place-items:center;padding:0}
+.add:active{background:var(--sage);color:var(--on-sage)}
+.add[disabled]{opacity:.3;cursor:not-allowed}
+.step{display:inline-flex;align-items:center;background:var(--sage);color:var(--on-sage);border-radius:999px;height:42px}
+.step button{width:38px;height:42px;border:0;background:transparent;color:inherit;font-size:22px;line-height:1;padding:0}
+.step span{min-width:20px;text-align:center;font-family:var(--sans);font-weight:600;font-size:15px}
+
+/* Cart bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .25s ease;pointer-events:none}
+.bar.on{transform:none;pointer-events:auto}
+.bar button{display:flex;width:100%;max-width:528px;margin:0 auto;align-items:center;justify-content:space-between;gap:12px;border:0;border-radius:18px;background:var(--sage);color:var(--on-sage);padding:14px 18px;min-height:58px;box-shadow:0 6px 24px rgba(0,0,0,.22);font-family:var(--sans);font-weight:600;font-size:15px}
+.bar .cnt{display:inline-grid;place-items:center;min-width:28px;height:28px;border-radius:14px;background:var(--on-sage);color:var(--sage);font-size:14px;padding:0 8px;margin-right:10px}
+.bar .sum{font-variant-numeric:tabular-nums}
+
+/* Sheet */
+.ov{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s}
+.ov.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;max-height:90%;display:flex;flex-direction:column;background:var(--card);border-radius:24px 24px 0 0;transform:translateY(105%);transition:transform .28s ease;max-width:560px;margin:0 auto;box-shadow:0 -10px 40px rgba(0,0,0,.25)}
+.sheet.on{transform:none}
+.sh-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 10px}
+.sh-head h3{margin:0;font-family:var(--sans);font-weight:400;font-size:18px;letter-spacing:.16em}
+.x{width:40px;height:40px;border:0;background:transparent;font-size:26px;line-height:1;border-radius:50%}
+.sh-body{overflow-y:auto;padding:0 20px;flex:1}
+.note{margin:0 0 6px;color:var(--muted);font-size:14px}
+.tbl{display:flex;align-items:center;gap:10px;margin:8px 0 6px;font-family:var(--sans);font-size:14px}
+.tbl input{width:84px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:8px 10px;font:inherit;font-size:16px}
+.lines{list-style:none;margin:0;padding:0}
+.line{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.line .t{font-weight:500}
+.line .q{font-family:var(--sans);font-weight:600;color:var(--sage);margin-right:6px}
+.line .s{font-family:var(--sans);font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.line .ctl{grid-row:1 / span 2;grid-column:2}
+.empty{padding:34px 0;text-align:center;color:var(--muted)}
+.tot{padding:12px 20px 4px;font-family:var(--sans);font-size:14px}
+.tot div{display:flex;justify-content:space-between;padding:3px 0;color:var(--muted);font-variant-numeric:tabular-nums}
+.tot .all{color:var(--ink);font-weight:600;font-size:18px;padding-top:8px}
+.acts{display:flex;gap:10px;padding:10px 20px calc(16px + env(safe-area-inset-bottom,0px))}
+.btn{flex:1;min-height:50px;border-radius:14px;border:1.5px solid var(--sage);background:transparent;color:var(--sage);font-family:var(--sans);font-weight:600;font-size:14px;padding:0 14px}
+.btn.main{background:var(--sage);color:var(--on-sage)}
+.btn.main[disabled]{opacity:.4}
+.btn.ghost{flex:0 0 auto;border-color:var(--line);color:var(--muted)}
+
+/* Waiter view */
+.sheet.show .ctl,.sheet.show .note,.sheet.show .x,.sheet.show .tbl{display:none}
+.tblshow{display:none;font-family:var(--sans);font-size:15px;color:var(--muted);margin:2px 0 4px}
+.sheet.show .tblshow{display:block}
+.sheet.show .line{padding:15px 0}
+.sheet.show .line .t{font-size:21px;line-height:1.3}
+.sheet.show .line .q{font-size:21px}
+.sheet.show .line .s{font-size:15px;grid-row:auto}
+.sheet.show .sh-head h3{font-size:20px}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (min-width:700px){.sprig{width:150px}.sprig.a{left:-10px}.sprig.b{right:-10px}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sprig" viewBox="0 0 120 70">
+    <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 64 C30 58 62 44 112 8"/>
+      <path d="M22 58 C14 46 18 36 30 30 C36 42 32 52 22 58Z"/>
+      <path d="M44 50 C38 38 44 28 56 24 C60 36 54 46 44 50Z"/>
+      <path d="M64 40 C60 28 66 20 78 17 C80 28 74 36 64 40Z"/>
+      <path d="M82 28 C80 18 86 10 96 8 C96 18 92 25 82 28Z"/>
+      <path d="M34 54 C44 56 52 64 54 70 C44 70 36 64 34 54Z"/>
+      <path d="M58 44 C68 46 76 52 80 60 C70 60 62 54 58 44Z"/>
+      <path d="M80 32 C90 33 98 38 102 46 C92 46 84 40 80 32Z"/>
+    </g>
+  </symbol>
+</svg>
+
+<div class="wrap" id="app"></div>
+
+<div class="bar" id="bar">
+  <button type="button" id="openCart">
+    <span><span class="cnt" id="barCnt">0</span><span id="barLbl"></span></span>
+    <span class="sum" id="barSum"></span>
+  </button>
+</div>
+
+<div class="ov" id="ov"></div>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle" aria-hidden="true">
+  <div class="sh-head">
+    <h3 id="shTitle"></h3>
+    <button type="button" class="x" id="closeCart" aria-label="Close">×</button>
+  </div>
+  <div class="sh-body">
+    <p class="note" id="note"></p>
+    <label class="tbl"><span id="tblLbl"></span><input id="tbl" inputmode="numeric" maxlength="4" autocomplete="off"></label>
+    <div class="tblshow" id="tblShow"></div>
+    <ul class="lines" id="lines"></ul>
+  </div>
+  <div class="tot" id="tot"></div>
+  <div class="acts">
+    <button type="button" class="btn ghost" id="clear"></button>
+    <button type="button" class="btn main" id="showBtn"></button>
+  </div>
+</section>
+
+<script src="i18n.js"></script>
+<script>
+(function(){
+var L = window.CHAILAT_I18N;
+"use strict";
+
+/* ====== Cafe info: fill in, empty fields are hidden ====== */
+var INFO = {
+  address: {kk:"Жамбыл даңғылы 162",ru:"проспект Жамбыла, 162",en:"162 Zhambyl Avenue"},
+  hours: "08:00–02:00",
+  phone: "+7 (700) 635-67-41",
+  instagram: "https://www.instagram.com/chailat.kz/",
+  whatsapp: "https://wa.me/77006356741",
+  map: "",          // 2GIS / Google Maps link
+  review: ""        // review link
+};
+
+/* ---------- Data ---------- */
+var CATS = {
+ breakfast:{kk:"Таңғы ас",ru:"Завтраки",en:"Breakfast",items:[
+  ["Жасыл салат және гравлакс албырты қосылған «Бенедикт» тартині",3051.5],
+  ["Қытырлақ сыр етті қосылған шакшука",2966.5],
+  ["Асшаяндар мен қызанақ соусы қосылған омлет",2966.5],
+  ["Саңырауқұлақ пен су-вид әдісімен дайындалған жұмыртқа қосылған гречетто",2380],
+  ["Ағылшын таңғы асы",2456.5],["Француз таңғы асы",2966.5],["Түрік таңғы асы",2796.5],
+  ["Тауық шұжығы мен саңырауқұлақ соусы қосылған скрэмбл",2711.5],
+  ["Қазақша таңғы ас",null]]},
+ porridge:{kk:"Ботқалар",ru:"Каши",en:"Porridge",items:[
+  ["Карамельденген банан қосылған күріш ботқасы",1590],["Құлпынай тосабы қосылған сұлы ботқасы",1390],
+  ["Жаңғақ қосылған манка ботқасы",1490],["Бал қосылған қарақұмық ботқасы",1390],["Тары ботқасы (майсөк)",1590]]},
+ sweet:{kk:"Тәтті таңғы ас",ru:"Сладкие завтраки",en:"Sweet breakfast",items:[
+  ["Бал және қаймақ қосылған құймақ",1590],["Құлпынай тосабы қосылған құймақ",1890],
+  ["Қайнатылған қоюландырылған сүт қосылған құймақ",1890],["Таңқурай қосылған сырник",2690],
+  ["Манго тосабы қосылған сырник",2890],["Құлпынай тосабы қосылған сырник",2790],["Таңқурай тосабы қосылған сырник",2790]]},
+ sandwich:{kk:"Сэндвичтер мен боулдар",ru:"Сэндвичи и боулы",en:"Sandwiches & bowls",items:[
+  ["Тауық еті қосылған круассан-сэндвич",1790],["Тунец қосылған круассан-сэндвич",1990],
+  ["Албырт қосылған сэндвич",1990],["Жеміс-жидек боулы",2890],
+  ["Green боул (киноа, қияр, жұмыртқа, алма, брокколи)",2790]]},
+ rolls:{kk:"Роллдар",ru:"Роллы",en:"Rolls",items:[
+  ["Филадельфия",3141],["Chailat",3321],["Жасыл ролл",2961],["Кемпірқосақ роллы",3141],
+  ["Американо",2961],["Албырт темпура",2961],
+  ["Тауық еті қосылған пісірілген ролл",2961],["Жыланбалық қосылған пісірілген ролл",3141]]},
+ soups:{kk:"Сорпалар",ru:"Супы",en:"Soups",items:[
+  ["Солянка",2241],["Жасымықтан жасалған крем-сорпа",1701],["Тауық еті қосылған рамен",3321],
+  ["Ростбиф қосылған рамен",3411],["Кеспе сорпа",1701],["Вареники",1251],
+  ["Теңіз өнімдері қосылған том-ям",3861],["Корольдік асшаяндар қосылған том-ям",3681],
+  ["Асқабақтан жасалған крем-сорпа",1971]]},
+ pasta:{kk:"Паста",ru:"Паста",en:"Pasta",items:[
+  ["Ысталған сыр еті қосылған Mac 'n' cheese",3141],["Карбонара",3141],["Фетучини Альфредо",2961],
+  ["Спагетти Болоньезе",3141],["Лазанья",3231],["Спагетти вонголе",3321]]},
+ salads:{kk:"Салаттар",ru:"Салаты",en:"Salads",items:[
+  ["Аз тұздалған албырт қосылған жасыл салат",3321],["Тунец қосылған нисуаз",3231],
+  ["Қытырлақ сыр еті қосылған микс-салат",3051],["Қытырлақ баклажан",2781],
+  ["Қызылша мен ешкі ірімшігі қосылған салат",3051],["Грек салаты",2511],
+  ["Тауық еті қосылған «Цезарь»",2781],["Асшаяндар қосылған «Цезарь»",3141],
+  ["Фокаччамен бірге берілетін буррата",3681]]},
+ pizza:{kk:"Пицца",ru:"Пицца",en:"Pizza",items:[
+  ["Ащы пеперони",2796.5],["Кептірілген қызанақ қосылған «Маргарита»",2541.5],
+  ["Страчателла және тунец қосылған пицца",2966.5],["Кептірілген сыр еті мен шампиньон қосылған пицца",2881.5],
+  ["Қытырлақ сыр қосылған пицца",3136.5],["Жульен пиццасы",2881.5],["Ірімшік қосылған пицца",3306.5],
+  ["Болоньезе пиццасы",2796.5],["«Цезарь» пиццасы",2796.5]]},
+ mains:{kk:"Негізгі тағамдар",ru:"Основные блюда",en:"Main dishes",items:[
+  ["Гриль көкөністері және BBQ соусы қосылған рибай",6490],
+  ["Аджапсандал және батат қосылған сыр етінің медальондары",6290],
+  ["Буға пісірілген күріш қосылған тауық филесі",3490],
+  ["Қырылған күріш және цитрусты соус қосылған дорадоның филесі",5290],
+  ["Гречетто қосылған тауық котлеті",3690],["Картоп езбесі қосылған бефстроганов",4490],
+  ["Сыр еті қосылған жареха",2890],["Сарымсақты картоп езбесі қосылған жылқы етінің медальондары",6290],
+  ["Пісірілген батат және кілегейлі соус қосылған албырт",6390],["Ысталған сыр еті қосылған жареха",2890],
+  ["Аншылық шұжықтары қосылған жареха",2790],
+  ["Усақталған картоп және етті соус қосылған «Джамбо» қабырғасы",null]]},
+ sides:{kk:"Гарнирлер",ru:"Гарниры",en:"Sides",items:[
+  ["Тауық нәггетстері",1890],["Ірімшік таяқшалары",1690],["Пармезан қосылған фри картобы",1290],
+  ["Пармезан қосылған картоп қайықшалары",1390],["Буға пісірілген күріш",890],["Қарақұмық",890],["Пісірілген батат",1390]]},
+ sauces:{kk:"Тұздықтар",ru:"Соусы",en:"Sauces",items:[
+  ["BBQ соусы",690],["Бұрышты соус",690],["Кілегейлі соус",690],["Саңырауқұлақты кілегейлі соус",690],
+  ["Ірімшік соусы",690],["Кетчуп",690],["Қаймақ",690],["Гуакамоле",690],["Тартар соусы",690]]},
+ coffee:{kk:"Кофе",ru:"Кофе",en:"Coffee",items:[
+  ["Эспрессо",900],["Қос эспрессо",1200],["Американо",1000],["Қос американо",1300],["Капучино",1300],
+  ["Қос капучино",1600],["Латте",1400],["Флэт уайт",1500],["Маршмеллоу қосылған кофе",1600],
+  ["Бал қосылған раф",1700],["Ванильді раф",1700],["Бананды раф",1800],["Классикалық раф",1600],
+  ["Айс латте",1500],["Айс капучино",1300],["Айс американо",1200],["Фраппучино",1800],["Гляссе",1700],["Кофе Бамбл",1900]]},
+ milk:{kk:"Сүтті коктейльдер",ru:"Молочные коктейли",en:"Milkshakes",items:[
+  ["Құлпынай бұлты",1800],["Шоколадты печенье",1800],["Сникерс",1900],["Манго креми",1900],
+  ["Орео",1800],["Көкжидек чизкейкі",1900],["Нәзік шабдалы",1800],["Дубай пістесі",2100]]},
+ smoothie:{kk:"Смузи",ru:"Смузи",en:"Smoothies",items:[
+  ["Kiwi Yogurt",1700],["Mango Berry",1800],["Banana Caramel",1700],["Strawberry Sakura",1800],["Blueberry Sakura",1800]]},
+ fresh:{kk:"Фреш",ru:"Фреши",en:"Fresh juices",items:[
+  ["Алма фреші",1500],["Апельсин фреші",1600],["Ананас фреші",1900],["Алма-апельсин",1500],["Пайдалы шот",700]]},
+ lemonade:{kk:"Лимонадтар",ru:"Лимонады",en:"Lemonades",items:[
+  ["Aloe Garden",1500],["Cherry Yuzu",1600],["Қызғылт баркыт",1600],["Жасыл алма",1500],["Chai Latte",1600],
+  ["Berry Lemonade",1600],["Purple Bloom",1600],["Yuzu Watermelon",1700],["Tropical Gold",1700]]},
+ tea:{kk:"Шай",ru:"Чай",en:"Tea",items:[
+  ["Ташкентше шай",1500],["Марокканша шай",1500],["Пряная вишня",1500],["Жидекті шай",1500],["Тары шай",1400],
+  ["Сүтті шай",1300],["Шабдалы-ромашка шайы",1500],["Жемісті шай",1500],["Таңқурай-базилик шайы",1600],
+  ["Цитрус-жалбыз шайы",1600],["Шырғанақ шайы",1700],["Фирмалық Chai Latte шайы",1800]]},
+ cn:{kk:"Қытайдың жапырақты шайы",ru:"Китайский листовой чай",en:"Chinese loose-leaf tea",items:[
+  ["Да Хун Пао",1500],["Те Гуань Инь",1500],["Қара пуэр",1500],["Жасыл пуэр",1500],["Божественный",1500],["Айва-шабдалы",1500]]},
+ turk:{kk:"Түрік шайы",ru:"Турецкий чай",en:"Turkish tea",items:[["Түрік шайы",1300]]},
+ mocktail:{kk:"Алкогольсіз коктейльдер",ru:"Безалкогольные коктейли",en:"Mocktails",items:[
+  ["Апероль",1900],["Sunset",1900],["Green Balance",1800],["Coconut Breeze",1900],["Passion Colada",1900]]},
+ smoke:{kk:"Түтінді коктейльдер",ru:"Дымные коктейли",en:"Smoked cocktails",items:[
+  ["Түтінді коктейль",5990],["Тостағанды ауыстыру",3990],["«Сарқырама» түтінді коктейлі",19990],
+  ["«Қоян» түтінді коктейлі",19990],["Жемісті түтінді коктейль",9990]]}
+};
+var SECS = [
+ {id:"breakfast",g:"food",kk:"Таңғы ас",ru:"Завтраки",en:"Breakfast",cats:["breakfast","porridge","sweet"]},
+ {id:"salads",g:"food",kk:"Салаттар",ru:"Салаты",en:"Salads",cats:["salads"]},
+ {id:"sandwich",g:"food",kk:"Сэндвичтер мен боулдар",ru:"Сэндвичи и боулы",en:"Sandwiches & bowls",cats:["sandwich"]},
+ {id:"rolls",g:"food",kk:"Роллдар",ru:"Роллы",en:"Rolls",cats:["rolls"]},
+ {id:"soups",g:"food",kk:"Сорпалар мен паста",ru:"Супы и паста",en:"Soups & pasta",cats:["soups","pasta"]},
+ {id:"pizza",g:"food",kk:"Пицца",ru:"Пицца",en:"Pizza",cats:["pizza"]},
+ {id:"mains",g:"food",kk:"Негізгі тағамдар",ru:"Основные блюда",en:"Main dishes",cats:["mains","sides","sauces"]},
+ {id:"coffee",g:"drink",kk:"Кофе",ru:"Кофе",en:"Coffee",cats:["coffee"]},
+ {id:"tea",g:"drink",kk:"Шай",ru:"Чай",en:"Tea",cats:["tea","cn","turk"]},
+ {id:"cold",g:"drink",kk:"Лимонад, фреш, смузи",ru:"Лимонады, фреши, смузи",en:"Lemonades & fresh",cats:["lemonade","fresh","smoothie"]},
+ {id:"cocktails",g:"drink",kk:"Коктейльдер",ru:"Коктейли",en:"Cocktails",cats:["milk","mocktail","smoke"]}
+];
+var ICONS = {
+ breakfast:'<circle cx="24" cy="24" r="8"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11 11l4 4M33 33l4 4M37 11l-4 4M15 33l-4 4"/>',
+ salads:'<path d="M6 22h36a18 16 0 0 1-36 0z"/><path d="M15 20c-3-8 3-13 9-13 1 7-2 11-9 13zM28 20c0-7 5-11 11-10-1 6-5 10-11 10z"/>',
+ sandwich:'<path d="M8 20a16 12 0 0 1 32 0z"/><path d="M6 26h36"/><path d="M8 32h32q0 8-8 8H16q-8 0-8-8z"/>',
+ rolls:'<circle cx="15" cy="26" r="9"/><circle cx="15" cy="26" r="4"/><circle cx="33" cy="26" r="9"/><circle cx="33" cy="26" r="4"/><path d="M15 17c2-5 6-7 9-7"/>',
+ soups:'<path d="M7 26h34a17 14 0 0 1-34 0z"/><path d="M17 20c-3-4 3-6 0-10M25 20c-3-4 3-6 0-10M33 20c-3-4 3-6 0-10"/>',
+ pizza:'<path d="M6 13Q24 4 42 13L24 42z"/><circle cx="19" cy="18" r="2"/><circle cx="29" cy="19" r="2"/><circle cx="24" cy="28" r="2"/>',
+ mains:'<circle cx="24" cy="24" r="12"/><circle cx="24" cy="24" r="6.5"/><path d="M5 8v10a3 3 0 0 0 6 0V8M8 18v22M43 8c-4 2-5 8-5 14h5M43 22v18"/>',
+ coffee:'<path d="M9 19h24v9a10 10 0 0 1-10 10h-4A10 10 0 0 1 9 28z"/><path d="M33 21h3a5 5 0 0 1 0 10h-3M16 14c-2-3 2-4 0-8M24 14c-2-3 2-4 0-8"/>',
+ tea:'<path d="M12 22h24v6a12 10 0 0 1-24 0z"/><path d="M16 22a8 6 0 0 1 16 0M24 12v2M36 26q6-2 6-9M12 26q-8 0-8 6 0 4 8 4"/>',
+ cold:'<path d="M13 9h22l-3 31H16z"/><path d="M26 7l5-5M14 17h20"/><circle cx="33" cy="12" r="4"/>',
+ cocktails:'<path d="M9 10h30L24 27z"/><path d="M24 27v12M16 40h16M33 6l-6 8"/><circle cx="31" cy="6" r="2"/>'
+};
+
+
+
+/* Photos: add a link to a real photo by item name, e.g. PHOTOS["Капучино"]="photos/cappuccino.jpg".
+   While empty, a neat icon placeholder is shown. */
+var PHOTOS = {
+  // Assign each menu item the closest available dish photo from the supplied archive.
+};
+var PHOTO_SETS = {
+  breakfast:[39,1018,950,950,950,620,980,39,950],
+  porridge:[1,65,118,1,1],
+  sweet:[620,1805,650,1805,650,1805,650],
+  sandwich:[760,39,520,980,1415],
+  rolls:[240,210,380,275,730,240,730,410],
+  soups:[925,138,160,160,1118,430,925,925,900],
+  pasta:[1048,450,350,1670,430,350],
+  salads:[520,550,590,680,610,590,840,840,1945],
+  pizza:[1315,1165,1215,1265,1265,1455,1215,1315,1165],
+  mains:[1535,1760,1715,1612,1715,1715,1535,1760,1612,1535,1645,1645],
+  sides:[730,1645,1535,1612,1048,1535,1612],
+  sauces:[1118,925,1048,350,1048,925,650,480,925],
+  coffee:[39,1975,1007,1155,1975,39,1975,1975,1975,1975,1975,1975,1975,1155,1007,1007,1559,1975,1559],
+  milk:[1559,1155,1368,1559,1007,1438,1229,1559],
+  smoothie:[1438,1368,1155,1559,1229],
+  fresh:[1368,1155,1007,1368,1438],
+  lemonade:[1229,1559,1155,1438,1975,1155,1559,1007,1368],
+  tea:[1975,1559,1155,1975,1975,1975,1975,1975,1559,1229,1155,1975],
+  cn:[1975,1975,1975,1975,1559,1559],
+  turk:[1975],
+  mocktail:[1559,1007,1438,1229,1368],
+  smoke:[1850,1885,1850,1885,1850]
+};
+Object.keys(PHOTO_SETS).forEach(function(cid){
+  CATS[cid].items.forEach(function(item,i){
+    PHOTOS[item[0]] = "photos/dishes/dish-"+String(PHOTO_SETS[cid][i] || PHOTO_SETS[cid][i % PHOTO_SETS[cid].length]).padStart(4,"0")+".jpg";
+  });
+});
+/* Banner photos for the home screen (one per section). Add links, e.g. BANNERS.coffee = "photos/coffee.jpg".
+   While empty, a warm gradient with an icon is shown. */
+var BANNERS = {
+  breakfast:"photos/global/breakfast.jpg",
+  salads:"photos/global/salads.jpg",
+  sandwich:"photos/global/sandwiches.jpg",
+  rolls:"photos/global/rolls.jpg",
+  soups:"photos/global/soups.jpg",
+  pizza:"photos/global/pizzas.jpg",
+  mains:"photos/global/main_foods.jpg",
+  coffee:"photos/global/cofee.jpg",
+  tea:"photos/global/tea.jpg",
+  cold:"photos/global/smoothie.jpg",
+  cocktails:"photos/global/cocktails.jpg"
+};
+var CAT_SEC = {};
+SECS.forEach(function(s){ s.cats.forEach(function(c){ CAT_SEC[c] = s.id; }); });
+
+function dn(n){ var d = DISH[n]; return d && lang!=="kk" ? d[lang==="ru"?0:1] : n; }
+
+var I18N = L.I18N, INTRO = L.INTRO, DISH = L.DISH;
+/* all texts and translations live in i18n.js */
+var SERVICE = 0.12;
+
+/* ---------- State ---------- */
+var lang = "kk", cart = {}, table = "";
+function load(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function save(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+try{
+  var ql = (location.search.match(/[?&]lang=(kk|ru|en)/)||[])[1]; if(ql) lang = ql; /* Kazakh by default */
+  var sc = load("chailat_cart"); if(sc){ var o = JSON.parse(sc); if(o && typeof o==="object") cart = o; }
+  table = load("chailat_table") || "";
+}catch(e){}
+
+var flat = {};
+Object.keys(CATS).forEach(function(cid){ CATS[cid].items.forEach(function(it,i){ flat[cid+"-"+i] = {name:it[0],price:it[1]}; }); });
+Object.keys(cart).forEach(function(k){ if(!flat[k] || flat[k].price==null || !(cart[k]>0)) delete cart[k]; });
+
+function t(k){ return I18N[lang][k]; }
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function money(n){
+  var s = (Math.round(n*100)/100).toString().split(".");
+  var a = s[0].replace(/\B(?=(\d{3})+(?!\d))/g,"\u00A0");
+  return a + (s[1] ? ","+(s[1].length<2? s[1]+"0": s[1]) : "") + "\u00A0₸";
+}
+function secCount(s){ var n=0; s.cats.forEach(function(c){ n += CATS[c].items.length; }); return n; }
+function langHTML(){
+  var names = {kk:"KZ",ru:"RU",en:"EN"}, full = {kk:"Қазақша",ru:"Русский",en:"English"};
+  return '<div class="lang" id="lang"><button type="button" class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">'+names[lang]+
+    '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg></button>'+
+    '<ul class="lang-menu" role="listbox">'+
+    ["kk","ru","en"].map(function(l){ return '<li role="presentation"><button type="button" role="option" data-lang="'+l+'" aria-selected="'+(l===lang)+'"><span>'+names[l]+' · '+full[l]+'</span></button></li>'; }).join("")+
+    '</ul></div>';
+}
+
+/* ---------- Views ---------- */
+function ctlHTML(key){
+  var q = cart[key]||0, p = flat[key].price;
+  if(p==null) return '<button type="button" class="add" disabled aria-label="—">+</button>';
+  if(!q) return '<button type="button" class="add" data-act="inc" data-key="'+key+'" aria-label="+">+</button>';
+  return '<div class="step"><button type="button" data-act="dec" data-key="'+key+'" aria-label="−">−</button><span>'+q+'</span><button type="button" data-act="inc" data-key="'+key+'" aria-label="+">+</button></div>';
+}
+function cardHTML(s){
+  var i = SECS.indexOf(s), url = BANNERS[s.id];
+  var st = url ? ' style="background-image:url(\''+esc(url)+'\')"' : '';
+  return '<a class="card'+(url?'':' c'+(i%6))+'" href="#/s/'+s.id+'"'+st+'>'+
+    (url?'':'<span class="bgico"><svg viewBox="0 0 48 48" aria-hidden="true">'+ICONS[s.id]+'</svg></span>')+
+    '<span class="ct">'+esc(s[lang])+'</span></a>';
+}
+function infoHTML(){
+  var rows = "";
+  var address = typeof INFO.address === "string" ? INFO.address : INFO.address[lang];
+  var icons = {
+    address:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+    hours:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-5"/></svg>',
+    phone:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a15 15 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C9 20 4 15 3 6a2 2 0 0 1 2-2Z"/></svg>'
+  };
+  if(address) rows += '<div class="info-row"><span class="info-ico">'+icons.address+'</span><div><small>'+t("address")+'</small><b>'+esc(address)+'</b></div></div>';
+  if(INFO.hours) rows += '<div class="info-row"><span class="info-ico">'+icons.hours+'</span><div><small>'+t("hours")+'</small><b>'+esc(INFO.hours)+'</b></div></div>';
+  if(INFO.phone) rows += '<div class="info-row"><span class="info-ico">'+icons.phone+'</span><div><small>'+t("phone")+'</small><b><a href="tel:'+esc(INFO.phone.replace(/[^+\d]/g,""))+'">'+esc(INFO.phone)+'</a></b></div></div>';
+  var links = "";
+  if(INFO.map) links += '<a href="'+esc(INFO.map)+'" target="_blank" rel="noopener">'+t("mapBtn")+'</a>';
+  if(INFO.review) links += '<a href="'+esc(INFO.review)+'" target="_blank" rel="noopener">'+t("reviewBtn")+'</a>';
+  if(INFO.instagram) links += '<a href="'+esc(INFO.instagram)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>Instagram</a>';
+  if(INFO.whatsapp) links += '<a href="'+esc(INFO.whatsapp)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.6A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M8.5 8.5c.5 3 2 4.5 5 5l1-1.2 2 .8c-.2 1.4-1 2-2.2 2-3.4-.2-6.2-3-6.5-6.2 0-1.2.6-2 2-2.2l.8 2Z"/></svg>WhatsApp</a>';
+  return '<div class="info">'+rows+'</div>'+(links?'<div class="links">'+links+'</div>':"");
+}
+function hookHTML(){
+  var kz = lang === "kk";
+  return '<footer class="hook"><p>'+t("hook")+(kz ? ' <b>CHAILAT</b>' : ' <b>CHAILAT</b>')+'</p></footer>';
+}
+function renderHome(){
+  var h = '<header class="hero"><div class="hero-top">'+langHTML()+'</div>'+ 
+    '<h1 class="logo">CHAILAT</h1><p class="tag">'+'</p><p class="welcome">'+t("welcome")+'</p><p class="hint">'+t("hint")+'</p></header>';
+  ["food","drink"].forEach(function(g){
+    h += '<p class="gh">'+t(g)+'</p><div class="grid">'+
+      SECS.filter(function(s){ return s.g===g; }).map(cardHTML).join("")+'</div>';
+  });
+  h += infoHTML() + hookHTML();
+  $("app").innerHTML = h;
+}
+function renderList(sec){
+  var h = '<div class="top"><div class="top-row"><a class="back" href="#/" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></a>'+
+    '<h1>'+esc(sec[lang])+'</h1>'+langHTML()+'</div><div class="chips-in" id="chips">'+
+    SECS.map(function(s){ return '<a class="chip" href="#/s/'+s.id+'"'+(s.id===sec.id?' aria-current="true"':'')+'>'+esc(s[lang])+'</a>'; }).join("")+
+    '</div></div><section class="intro"><h2>'+esc(sec[lang].toUpperCase())+'</h2><p>'+esc(INTRO[sec.id][lang])+'</p></section><main>';
+  sec.cats.forEach(function(cid){
+    var c = CATS[cid];
+    if(sec.cats.length>1) h += '<h2 class="sub">'+esc(c[lang])+'</h2>';
+    c.items.forEach(function(it,i){
+      var key = cid+"-"+i;
+      var pho = PHOTOS[it[0]] ? '<img src="'+esc(PHOTOS[it[0]])+'" alt="'+esc(dn(it[0]))+'" loading="lazy" onerror="this.remove()">' : '';
+      h += '<div class="item"><div class="ph"><svg viewBox="0 0 48 48" aria-hidden="true">'+ICONS[CAT_SEC[cid]]+'</svg>'+pho+'</div><div><div class="nm">'+esc(dn(it[0]))+'</div>'+
+        '<div class="pr'+(it[1]==null?' na':'')+'">'+(it[1]==null? t("na") : money(it[1]))+'</div></div>'+
+        '<div class="ctl" id="ctl-'+key+'">'+ctlHTML(key)+'</div></div>';
+    });
+  });
+  h += '</main>' + infoHTML() + hookHTML();
+  $("app").innerHTML = h;
+  var cur = document.querySelector('.chip[aria-current="true"]');
+  if(cur){ var box = $("chips"); box.scrollLeft = cur.offsetLeft - box.clientWidth/2 + cur.offsetWidth/2; }
+}
+function renderStatic(){
+  $("shTitle").textContent = t("cart").toUpperCase();
+  $("note").textContent = t("note");
+  $("tblLbl").textContent = t("table");
+  $("clear").textContent = t("clear");
+  $("barLbl").textContent = t("open");
+  document.documentElement.lang = lang === "kk" ? "kk" : lang;
+}
+var lastRoute = "";
+function render(keepScroll){
+  var m = location.hash.match(/^#\/s\/([a-z]+)/), sec = null;
+  if(m) SECS.forEach(function(s){ if(s.id===m[1]) sec = s; });
+  var key = sec ? sec.id : "home";
+  var y = window.pageYOffset;
+  if(sec) renderList(sec); else renderHome();
+  if(!keepScroll && key!==lastRoute) window.scrollTo(0,0); else if(keepScroll) window.scrollTo(0,y);
+  lastRoute = key;
+  renderStatic(); updateBar();
+}
+
+/* ---------- Cart ---------- */
+function totals(){
+  var n=0, s=0;
+  Object.keys(cart).forEach(function(k){ n += cart[k]; s += cart[k]*flat[k].price; });
+  return {n:n, sub:s, svc:s*SERVICE, all:s*(1+SERVICE)};
+}
+function persist(){ save("chailat_cart", JSON.stringify(cart)); }
+function change(key, d){
+  var q = (cart[key]||0) + d;
+  if(q<=0) delete cart[key]; else cart[key] = Math.min(q,99);
+  persist();
+  var el = $("ctl-"+key); if(el) el.innerHTML = ctlHTML(key);
+  updateBar();
+  if(sheetOpen) renderSheet();
+}
+var sheetOpen = false, showMode = false;
+function updateBar(){
+  var T = totals();
+  $("barCnt").textContent = T.n;
+  $("barSum").textContent = money(T.all);
+  $("bar").classList.toggle("on", T.n>0 && !sheetOpen);
+}
+function renderSheet(){
+  var keys = Object.keys(cart), T = totals(), h = "";
+  keys.forEach(function(k){
+    var it = flat[k], q = cart[k];
+    h += '<li class="line"><div class="t"><span class="q">'+q+'×</span>'+esc(dn(it.name))+'</div>'+
+         '<div class="ctl">'+ctlHTML(k)+'</div><div class="s">'+money(it.price*q)+'</div></li>';
+  });
+  $("lines").innerHTML = h || '<li class="empty">'+t("empty")+'</li>';
+  $("tot").innerHTML = keys.length ?
+    '<div><span>'+t("sub")+'</span><span>'+money(T.sub)+'</span></div>'+
+    '<div><span>'+t("svc")+'</span><span>'+money(T.svc)+'</span></div>'+
+    '<div class="all"><span>'+t("total")+'</span><span>'+money(T.all)+'</span></div>' : "";
+  if(!keys.length && showMode){ showMode = false; $("sheet").classList.remove("show"); }
+  $("showBtn").textContent = showMode ? t("back") : t("show");
+  $("showBtn").disabled = !keys.length;
+  $("clear").style.display = keys.length && !showMode ? "" : "none";
+  $("tblShow").textContent = table ? t("tableShow")+" № "+table : "";
+}
+function openSheet(){
+  sheetOpen = true; showMode = false;
+  $("sheet").classList.remove("show");
+  renderSheet();
+  $("ov").classList.add("on"); $("sheet").classList.add("on");
+  $("sheet").setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+  updateBar();
+  setTimeout(function(){ $("closeCart").focus(); }, 50);
+}
+function closeSheet(){
+  sheetOpen = false; showMode = false;
+  $("ov").classList.remove("on"); $("sheet").classList.remove("on","show");
+  $("sheet").setAttribute("aria-hidden","true");
+  document.body.style.overflow = "";
+  updateBar();
+  $("openCart").focus({preventScroll:true});
+}
+
+/* ---------- Events ---------- */
+document.addEventListener("click", function(e){
+  var b = e.target.closest("[data-act]");
+  if(b){ change(b.dataset.key, b.dataset.act==="inc" ? 1 : -1); return; }
+  var l = e.target.closest("[data-lang]");
+  if(l){ lang = l.dataset.lang; save("chailat_lang", lang); render(true); if(sheetOpen) renderSheet(); return; }
+  var lb = e.target.closest("#langBtn");
+  var box = document.getElementById("lang");
+  if(lb){ var o = box.classList.toggle("open"); lb.setAttribute("aria-expanded", o); return; }
+  if(box && box.classList.contains("open")){ box.classList.remove("open"); }
+});
+$("openCart").addEventListener("click", openSheet);
+$("closeCart").addEventListener("click", closeSheet);
+$("ov").addEventListener("click", closeSheet);
+document.addEventListener("keydown", function(e){ if(e.key==="Escape"){ var lg=document.getElementById("lang"); if(lg) lg.classList.remove("open"); if(sheetOpen) closeSheet(); } });
+$("clear").addEventListener("click", function(){
+  cart = {}; persist();
+  Array.prototype.forEach.call(document.querySelectorAll('[id^="ctl-"]'), function(el){ if(el.id.indexOf("ctl-")===0 && el.id.indexOf("-")>0 && !el.closest("#sheet")) el.innerHTML = ctlHTML(el.id.slice(4)); });
+  renderSheet(); updateBar();
+});
+$("showBtn").addEventListener("click", function(){
+  showMode = !showMode;
+  $("sheet").classList.toggle("show", showMode);
+  renderSheet();
+  $("sheet").querySelector(".sh-body").scrollTop = 0;
+});
+$("tbl").value = table;
+$("tbl").addEventListener("input", function(){
+  table = this.value.replace(/[^\d]/g,"").slice(0,4); this.value = table; save("chailat_table", table);
+});
+window.addEventListener("hashchange", function(){ render(false); });
+
+render(false);
+})();
+</script>
+</body>
+</html>
+
+
