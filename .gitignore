@@ -147,3 +147,6 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Raw photoshoot (2.8 GB) - web copies live in photos/dishes/
+ЧАЙЛАТ/

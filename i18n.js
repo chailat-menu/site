@@ -3,39 +3,45 @@
 (function(){
 "use strict";
 var I18N = {
- kk:{hint:"Тағамды таңдап, себетті официантқа көрсетіңіз",
-     food:"ТАҒАМ",drink:"СУСЫН",open:"Себетті ашу",cart:"Себет",
+ kk:{tagline:"CHAILAT — дәм мен жайлылық мекені!",hint:"Таңдауыңызды жасаңыз да, сүйікті дәміңізден ләззат алыңыз.",
+     food:"ТАҒАМДАР",drink:"СУСЫНДАР",open:"Себетті ашу",cart:"Себет",
      empty:"Себет бос. Тағамның жанындағы + батырмасын басыңыз.",sub:"Сомасы",svc:"Қызмет көрсету 12%",
      total:"Барлығы",show:"Официантқа көрсету",back:"Өзгерту",clear:"Тазалау",table:"Үстел №",tableShow:"Үстел",
      na:"Бағасын сұраңыз",note:"Бұл онлайн тапсырыс емес. Тізімді официантқа көрсетіңіз.",
      address:"Мекенжайы",hours:"Жұмыс уақыты",phone:"Байланыс",mapBtn:"Қалай жетуге болады?",reviewBtn:"Пікір қалдыру",
      svcInfo:"Қызмет көрсету",svcVal:"Шоттың 12%-ы",
-     welcome:"CHAILAT-қа қош келдіңіз! Мұнда хош иісті кофе, шай, дәмді таңғы ас пен ыстық тағамдар сізді күтеді. Қалаған тағамыңызды таңдап, себетті официантқа көрсетіңіз.",
-     hook:"Жақыныңмен келіп"},
- ru:{hint:"Выберите блюда и покажите корзину официанту",
+     welcome:"Күн сайынғы сәттеріңізді ерекше дәммен толықтырыңыз. Хош иісті кофе, дәмді тағамдар мен жағымды атмосфера — барлығы сіз үшін!",
+     hook:"Жақындарыңмен бірге кел",
+     menu:"Мәзір",menuBtn:"Мәзірді ашу",home:"Басты бет",svcNotice:"Қызмет көрсету — тапсырыс сомасының +12%-ы",accept:"Келісемін",visit:"Сізді күтеміз",route:"2GIS-те маршрут",call:"Қоңырау шалу",
+     add:"Себетке қосу",order:"Тапсырыс"},
+ ru:{tagline:"CHAILAT — место вкуса и уюта!",hint:"Сделайте свой выбор и наслаждайтесь любимым вкусом.",
      food:"КУХНЯ",drink:"НАПИТКИ",open:"Открыть корзину",cart:"Корзина",
      empty:"Корзина пуста. Нажмите + рядом с блюдом.",sub:"Сумма",svc:"Обслуживание 12%",
      total:"Итого",show:"Показать официанту",back:"Изменить",clear:"Очистить",table:"Стол №",tableShow:"Стол",
      na:"Цену уточняйте",note:"Это не онлайн-заказ. Покажите список официанту.",
      address:"Адрес заведения",hours:"Режим работы",phone:"Контакты",mapBtn:"Как добраться?",reviewBtn:"Оставить отзыв",
      svcInfo:"Обслуживание",svcVal:"12% от суммы счёта",
-     welcome:"Добро пожаловать в CHAILAT! Здесь вас ждут ароматный кофе, чай, вкусные завтраки и горячие блюда. Выберите, что хочется, и покажите корзину официанту.",
-     hook:"Приходи с близкими в"},
- en:{hint:"Pick your dishes and show the cart to your waiter",
+     welcome:"Дополните каждый день особым вкусом. Ароматный кофе, вкусные блюда и приятная атмосфера — всё для вас!",
+     hook:"Приходи с близкими в",
+     menu:"Меню",menuBtn:"Открыть меню",home:"Главная",svcNotice:"Обслуживание +12% от суммы заказа",accept:"Согласен(-на)",visit:"Ждём вас",route:"Маршрут в 2GIS",call:"Позвонить",
+     add:"В корзину",order:"Заказ"},
+ en:{tagline:"CHAILAT — a home of flavour and comfort!",hint:"Make your choice and enjoy your favourite flavours.",
      food:"FOOD",drink:"DRINKS",open:"Open cart",cart:"Cart",
      empty:"Your cart is empty. Tap + next to a dish.",sub:"Subtotal",svc:"Service charge 12%",
      total:"Total",show:"Show to waiter",back:"Edit",clear:"Clear",table:"Table #",tableShow:"Table",
      na:"Ask for the price",note:"This is not an online order. Show the list to your waiter.",
      address:"Address",hours:"Opening hours",phone:"Contacts",mapBtn:"Get directions",reviewBtn:"Leave a review",
      svcInfo:"Service charge",svcVal:"12% of the bill",
-     welcome:"Welcome to CHAILAT! Fragrant coffee, tea, tasty breakfasts and hot dishes are waiting for you. Pick what you like and show the cart to your waiter.",
-     hook:"Come with your loved ones to"}
+     welcome:"Add a special taste to every day. Fragrant coffee, delicious food and a warm atmosphere — all for you!",
+     hook:"Come with your loved ones to",
+     menu:"Menu",menuBtn:"View menu",home:"Home",svcNotice:"Service charge: +12% of the order total",accept:"I agree",visit:"We look forward to seeing you",route:"Directions in 2GIS",call:"Call",
+     add:"Add to order",order:"Order"}
 };
 
 var INTRO = {
  breakfast:{kk:"Күнді дәмді бастаңыз: жұмыртқа тағамдары, ботқалар және тәтті құймақтар.",ru:"Начните день со вкусного: яичные блюда, каши и сладкие блинчики.",en:"Start your day right: egg dishes, porridges and sweet pancakes."},
- salads:{kk:"Жаңа піскен көкөніс пен нәзік тұздықтардан жасалған жеңіл салаттар.",ru:"Лёгкие салаты из свежих овощей и нежных соусов.",en:"Light salads made with fresh vegetables and delicate dressings."},
- sandwich:{kk:"Тез және тойымды: қол жеткізетін сэндвичтер мен түрлі боулдар.",ru:"Быстро и сытно: сэндвичи и разноцветные боулы.",en:"Quick and filling: sandwiches and colourful bowls."},
+ salads:{kk:"Балғын көкөністер мен нәзік тұздықтардан жасалған жеңіл салаттар.",ru:"Лёгкие салаты из свежих овощей и нежных соусов.",en:"Light salads made with fresh vegetables and delicate dressings."},
+ sandwich:{kk:"Тез әрі тойымды: сэндвичтер мен түрлі-түсті боулдар.",ru:"Быстро и сытно: сэндвичи и разноцветные боулы.",en:"Quick and filling: sandwiches and colourful bowls."},
  rolls:{kk:"Жаңа дайындалған роллдар: классикалық және фирмалық дәмдер.",ru:"Свежеприготовленные роллы: классика и авторские вкусы.",en:"Freshly made rolls: classics and house favourites."},
  soups:{kk:"Жылы сорпалар мен итальяндық паста — жайлы түскі асқа таптырмас таңдау.",ru:"Тёплые супы и итальянская паста — отличный выбор для уютного обеда.",en:"Warm soups and Italian pasta, perfect for a cosy lunch."},
  pizza:{kk:"Қытырлақ қамырлы, хош иісті пиццалар — достармен бөлісуге ыңғайлы.",ru:"Пицца на хрустящем тесте с ароматной начинкой — удобно делить с друзьями.",en:"Crispy-crust pizzas with aromatic toppings, made for sharing."},
@@ -43,7 +49,7 @@ var INTRO = {
  coffee:{kk:"Таңдаулы дәнді кофе: классикалық эспрессодан бастап раф пен фраппучиноға дейін.",ru:"Отборный кофе: от классического эспрессо до рафа и фраппучино.",en:"Carefully chosen coffee: from classic espresso to raf and frappuccino."},
  tea:{kk:"Шай — Chailat жүрегі. Дәстүрлі, жемісті және қытайдың жапырақты шайлары.",ru:"Чай — сердце Chailat. Традиционные, фруктовые и китайские листовые сорта.",en:"Tea is the heart of Chailat: traditional, fruity and Chinese loose-leaf blends."},
  cold:{kk:"Салқын сусындар: жаңа сығылған фреш, лимонад және дәмді смузи.",ru:"Освежающие напитки: свежевыжатые фреши, лимонады и вкусные смузи.",en:"Refreshing drinks: fresh juices, lemonades and tasty smoothies."},
- cocktails:{kk:"Сүтті, алкогольсіз және түтінді коктейльдер — әр сипімде жаңа әсер.",ru:"Молочные, безалкогольные и дымные коктейли — новое впечатление в каждом глотке.",en:"Milkshakes, mocktails and smoked cocktails: a new experience in every sip."}
+ cocktails:{kk:"Сүтті, алкогольсіз және түтінді коктейльдер — әр жұтымда жаңа әсер.",ru:"Молочные, безалкогольные и дымные коктейли — новое впечатление в каждом глотке.",en:"Milkshakes, mocktails and smoked cocktails: a new experience in every sip."}
 };
 
 /* Dish names: Kazakh (menu base) -> [Russian, English]. Items not listed (brand names) stay as is. */
@@ -57,9 +63,9 @@ var DISH = {
 "Тартин «Бенедикт» с зелёным салатом и сёмгой гравлакс",
 "“Benedict” tartine with green salad and salmon gravlax"
 ],
-"Қытырлақ сыр етті қосылған шакшука": [
-"Шакшука с хрустящей ветчиной",
-"Shakshuka with crispy cured ham"
+"Қытырлақ сиыр еті қосылған шакшука": [
+"Шакшука с хрустящей говядиной",
+"Shakshuka with crispy beef"
 ],
 "Асшаяндар мен қызанақ соусы қосылған омлет": [
 "Омлет с креветками и томатным соусом",
@@ -205,9 +211,9 @@ var DISH = {
 "Тыквенный крем-суп",
 "Pumpkin cream soup"
 ],
-"Ысталған сыр еті қосылған Mac 'n' cheese": [
-"Mac 'n' cheese с копчёной ветчиной",
-"Mac 'n' cheese with smoked ham"
+"Ысталған сиыр еті қосылған Mac 'n' cheese": [
+"Mac 'n' cheese с копчёной говядиной",
+"Mac 'n' cheese with smoked beef"
 ],
 "Фетучини Альфредо": [
 "Феттучине Альфредо",
@@ -237,9 +243,9 @@ var DISH = {
 "Нисуаз с тунцом",
 "Niçoise salad with tuna"
 ],
-"Қытырлақ сыр еті қосылған микс-салат": [
-"Микс-салат с хрустящей ветчиной",
-"Mixed salad with crispy cured ham"
+"Қытырлақ сиыр еті қосылған микс-салат": [
+"Микс-салат с хрустящей говядиной",
+"Mixed salad with crispy beef"
 ],
 "Қытырлақ баклажан": [
 "Хрустящие баклажаны",
@@ -277,9 +283,9 @@ var DISH = {
 "Пицца со страчателлой и тунцом",
 "Pizza with stracciatella and tuna"
 ],
-"Кептірілген сыр еті мен шампиньон қосылған пицца": [
-"Пицца с ветчиной и шампиньонами",
-"Pizza with cured ham and mushrooms"
+"Кептірілген сиыр еті мен шампиньон қосылған пицца": [
+"Пицца с вяленой говядиной и шампиньонами",
+"Pizza with cured beef and mushrooms"
 ],
 "Қытырлақ сыр қосылған пицца": [
 "Пицца с хрустящим сыром",
@@ -305,7 +311,7 @@ var DISH = {
 "Рибай с овощами гриль и соусом BBQ",
 "Ribeye with grilled vegetables and BBQ sauce"
 ],
-"Аджапсандал және батат қосылған сыр етінің медальондары": [
+"Аджапсандал және батат қосылған сиыр етінің медальондары": [
 "Медальоны из говядины с аджапсандалом и бататом",
 "Beef medallions with ajapsandali and sweet potato"
 ],
@@ -325,9 +331,9 @@ var DISH = {
 "Бефстроганов с картофельным пюре",
 "Beef stroganoff with mashed potatoes"
 ],
-"Сыр еті қосылған жареха": [
-"Жареха с ветчиной",
-"Zhareha with cured ham"
+"Сиыр еті қосылған жареха": [
+"Жареха с говядиной",
+"Zhareha with beef"
 ],
 "Сарымсақты картоп езбесі қосылған жылқы етінің медальондары": [
 "Медальоны из конины с чесночным картофельным пюре",
@@ -337,15 +343,15 @@ var DISH = {
 "Лосось с запечённым бататом и сливочным соусом",
 "Salmon with baked sweet potato and cream sauce"
 ],
-"Ысталған сыр еті қосылған жареха": [
-"Жареха с копчёной ветчиной",
-"Zhareha with smoked ham"
+"Ысталған сиыр еті қосылған жареха": [
+"Жареха с копчёной говядиной",
+"Zhareha with smoked beef"
 ],
-"Аншылық шұжықтары қосылған жареха": [
+"Аңшылық шұжықтары қосылған жареха": [
 "Жареха с охотничьими колбасками",
 "Zhareha with hunting sausages"
 ],
-"Усақталған картоп және етті соус қосылған «Джамбо» қабырғасы": [
+"Ұсақталған картоп және етті соус қосылған «Джамбо» қабырғасы": [
 "Рёбра «Джамбо» с рубленым картофелем и мясным соусом",
 "“Jumbo” ribs with diced potatoes and meat sauce"
 ],
@@ -541,7 +547,7 @@ var DISH = {
 "Полезный шот",
 "Health shot"
 ],
-"Қызғылт баркыт": [
+"Қызғылт барқыт": [
 "Розовый бархат",
 "Pink velvet"
 ],
@@ -557,7 +563,7 @@ var DISH = {
 "Марокканский чай",
 "Moroccan tea"
 ],
-"Пряная вишня": [
+"Дәмдеуішті шие": [
 "Пряная вишня",
 "Spiced cherry"
 ],
@@ -573,7 +579,7 @@ var DISH = {
 "Молочный чай",
 "Milk tea"
 ],
-"Шабдалы-ромашка шайы": [
+"Шабдалы-түймедақ шайы": [
 "Чай персик-ромашка",
 "Peach-chamomile tea"
 ],
@@ -643,6 +649,12 @@ var DISH = {
 ]
 };
 
-window.CHAILAT_I18N = {I18N:I18N, INTRO:INTRO, DISH:DISH};
+/* Dish composition, keyed by the Kazakh name from CATS (index.html), like DISH.
+   Shown under the dish name and in the dish card. Example:
+   "Грек салаты": {kk:"Қызанақ, қияр, болгар бұрышы, фета, зәйтүн", ru:"Томаты, огурцы, болгарский перец, фета, оливки", en:"Tomatoes, cucumber, bell pepper, feta, olives"}, */
+var DESC = {
+};
+
+window.CHAILAT_I18N = {I18N:I18N, INTRO:INTRO, DISH:DISH, DESC:DESC};
 })();
 
