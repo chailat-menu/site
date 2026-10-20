@@ -80,7 +80,7 @@ html.seen .hero-img,html.seen .logo span,html.seen .kl,html.seen .hero .orn,html
 .gh::before,.gh::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
 .gh::after{transform:scaleX(-1)}
 .tiles{display:grid;grid-template-columns:1fr;gap:12px}
-.tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:21/9;min-height:150px;padding:18px 22px;border-radius:20px;overflow:hidden;isolation:isolate;background:var(--card)}
+.tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;width:100%;min-width:0;height:clamp(140px,40vw,210px);padding:18px 22px;border-radius:20px;overflow:hidden;isolation:isolate;background:var(--card)}
 
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease),filter .6s}
 .tile::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(13,11,9,.05) 20%,rgba(13,11,9,.45) 60%,rgba(13,11,9,.82) 100%)}
@@ -451,13 +451,13 @@ var SECS = [
    Keys (not names) because some names repeat across categories (e.g. "Американо").
    Items without a photo show a neat icon placeholder. */
 var PHOTOS = {};
-/* Photo numbers from the ЧАЙЛАТ photoshoot, in item order; 0 = no photo yet (icon is shown). */
+/* Photo numbers in item order; 0 = no photo yet. 1–2001: ЧАЙЛАТ shoot; 5000+N: ЧАЙЛАТ 2 shoot, frame 1000-N.jpg. */
 var PHOTO_SETS = {
-  breakfast:[856,1028,872,968,0,0,0,0,0],
+  breakfast:[856,1028,872,968,0,5092,5241,5082,0],
   porridge:[22,46,85,0,0],
   sweet:[629,657,0,1805,0,1837,0],
   sandwich:[762,820,804,987,1412],
-  rolls:[262,283,379,236,419,333,712,733],
+  rolls:[262,283,379,5006,419,333,712,733],
   soups:[937,914,162,193,147,431,1137,1137,1093],
   pasta:[1056,448,353,300,0,0],
   salads:[529,559,1343,692,599,489,510,0,1217],
