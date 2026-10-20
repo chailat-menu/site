@@ -80,7 +80,7 @@ html.seen .hero-img,html.seen .logo span,html.seen .kl,html.seen .hero .orn,html
 .gh::before,.gh::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
 .gh::after{transform:scaleX(-1)}
 .tiles{display:grid;grid-template-columns:1fr;gap:12px}
-.tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:21/9;min-height:150px;padding:18px 22px;border-radius:20px;overflow:hidden;isolation:isolate;background:var(--card)}
+.tile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;width:100%;min-width:0;height:clamp(140px,40vw,210px);padding:18px 22px;border-radius:20px;overflow:hidden;isolation:isolate;background:var(--card)}
 
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease),filter .6s}
 .tile::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(13,11,9,.05) 20%,rgba(13,11,9,.45) 60%,rgba(13,11,9,.82) 100%)}
