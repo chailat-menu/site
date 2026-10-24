@@ -503,6 +503,14 @@ Object.keys(PHOTO_SETS).forEach(function(cid){
     if(n) PHOTOS[cid+"-"+i] = "photos/dishes/dish-"+String(n).padStart(4,"0")+".jpg";
   });
 });
+/* large copy for the dish card: same name in photos/dishes/hd/ */
+function hdPhoto(key){ return PHOTOS[key] ? PHOTOS[key].replace("photos/dishes/","photos/dishes/hd/") : ""; }
+var hdCache = {};
+function preloadHD(key){
+  var src = hdPhoto(key);
+  if(src && !hdCache[src]){ hdCache[src] = new Image(); hdCache[src].src = src; }
+  return hdCache[src];
+}
 
 /* Section covers on the home screen. */
 var COVERS = {
@@ -834,7 +842,16 @@ function closeNotice(){
 function fillDish(key){
   var it = flat[key];
   $("dish").classList.toggle("noph", !PHOTOS[key]);
-  if(PHOTOS[key]){ $("dishImg").src = PHOTOS[key]; $("dishImg").alt = dn(it.name); }
+  if(PHOTOS[key]){
+    /* show the already loaded thumbnail at once, swap to the large photo when it is ready */
+    var img = $("dishImg"), big = preloadHD(key);
+    img.alt = dn(it.name);
+    if(big.complete && big.naturalWidth) img.src = big.src;
+    else {
+      img.src = PHOTOS[key];
+      big.addEventListener("load", function(){ if(dishKey===key) img.src = big.src; }, {once:true});
+    }
+  }
   $("dishDesc").textContent = desc(it.name);
   $("dishCat").textContent = CATS[it.cat][lang];
   $("dishName").textContent = dn(it.name);
@@ -900,6 +917,11 @@ $("tbl").value = table;
 $("tbl").addEventListener("input", function(){
   table = this.value.replace(/[^\d]/g,"").slice(0,4); this.value = table; save("chailat_table", table);
 });
+/* start loading the large photo as soon as a dish is touched */
+document.addEventListener("pointerdown", function(e){
+  var d = e.target.closest && e.target.closest("[data-dish]");
+  if(d && PHOTOS[d.dataset.dish]) preloadHD(d.dataset.dish);
+}, {passive:true});
 window.addEventListener("hashchange", function(){ show(true); });
 window.addEventListener("scroll", onScroll, {passive:true});
 window.addEventListener("resize", function(){ if(view==="menu"){ document.documentElement.style.setProperty("--toph", $("mtop").offsetHeight+"px"); setActive(activeSec, true); } });
