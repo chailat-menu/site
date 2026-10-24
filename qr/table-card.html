@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<title>CHAILAT — QR-табличка</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Табличка A6 (105×148 мм) для стола. QR-код вставляется из chailat-menu-qr.svg */
+@page{size:105mm 148mm;margin:0}
+:root{
+  --bg:#30241B; --bg2:#3B2E24; --gold:#CBA56B; --gold-hi:#E4C690; --line:rgba(203,165,107,.45);
+  --cream:#F6EFE2; --muted:#BCAD97; --ink:#1E1A15;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Manrope",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:105mm;height:148mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{background:var(--bg);overflow:hidden}
+.card{position:relative;width:105mm;height:148mm;
+  background:radial-gradient(ellipse 70% 45% at 50% 0%,rgba(228,198,144,.16),transparent 70%),
+             radial-gradient(ellipse 80% 40% at 50% 100%,rgba(203,165,107,.10),transparent 70%),var(--bg);
+  display:flex;flex-direction:column;align-items:center;text-align:center;padding:11mm 9mm 8mm;color:var(--cream)}
+/* двойная золотая рамка с ромбами в углах */
+.frame{position:absolute;inset:4.5mm;border:.3mm solid var(--line);pointer-events:none}
+.frame::before{content:"";position:absolute;inset:1.2mm;border:.15mm solid rgba(203,165,107,.25)}
+.frame i{position:absolute;width:2.4mm;height:2.4mm;background:var(--bg);border:.3mm solid var(--gold);transform:rotate(45deg)}
+.frame i:nth-child(1){top:-1.2mm;left:-1.2mm}.frame i:nth-child(2){top:-1.2mm;right:-1.2mm}
+.frame i:nth-child(3){bottom:-1.2mm;left:-1.2mm}.frame i:nth-child(4){bottom:-1.2mm;right:-1.2mm}
+.logo{font-family:var(--serif);font-weight:600;font-size:31pt;letter-spacing:.2em;margin-right:-.2em;line-height:1;color:var(--gold-hi)}
+.kl{font-family:var(--sans);font-weight:500;font-size:6.6pt;letter-spacing:.42em;margin-right:-.42em;text-transform:uppercase;color:var(--muted);margin-top:2.2mm}
+.orn{display:flex;align-items:center;justify-content:center;gap:2.4mm;color:var(--gold);margin:4mm 0}
+.orn::before,.orn::after{content:"";height:.25mm;width:13mm;background:linear-gradient(90deg,transparent,var(--gold))}
+.orn::after{transform:scaleX(-1)}
+.orn b{width:1.6mm;height:1.6mm;border:.25mm solid currentColor;transform:rotate(45deg)}
+.title{font-family:var(--serif);font-style:italic;font-weight:500;font-size:17pt;line-height:1;color:var(--cream)}
+.title span{color:var(--gold);font-style:normal;margin:0 1.6mm}
+.qr{margin-top:5mm;background:var(--cream);border-radius:3mm;padding:5.2mm;
+  box-shadow:0 0 0 .35mm var(--gold),0 0 0 1.6mm var(--bg),0 0 0 1.9mm var(--line)}
+.qr svg{display:block;width:45mm;height:45mm}
+.scan{margin-top:5.5mm;font-family:var(--sans);font-size:6.6pt;line-height:1.55;color:var(--muted)}
+.scan b{display:block;font-weight:600;font-size:7.4pt;color:var(--cream);letter-spacing:.02em}
+.foot{margin-top:auto;font-family:var(--sans);font-size:6.2pt;letter-spacing:.06em;color:var(--muted);line-height:1.7}
+.foot .gold{color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-weight:600;font-size:5.8pt}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="frame"><i></i><i></i><i></i><i></i></div>
+  <div class="logo">CHAILAT</div>
+  <div class="kl">kitchen &amp; lounge</div>
+  <div class="orn"><b></b></div>
+  <div class="title">Мәзір<span>·</span>Меню<span>·</span>Menu</div>
+  <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37"><path stroke="#1e1a15" d="M0 0.5h7m4 0h1m4 0h1m2 0h4m1 0h2m2 0h1m1 0h7m-37 1h1m5 0h1m5 0h1m2 0h2m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m2 0h2m2 0h1m1 0h1m1 0h1m2 0h1m3 0h3m3 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m4 0h4m1 0h1m2 0h2m4 0h3m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m3 0h3m1 0h1m4 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m2 0h14m1 0h2m4 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h4m1 0h1m4 0h1m5 0h1m2 0h2m-27 1h2m2 0h8m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h4m1 0h1m-33 1h1m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m2 0h2m2 0h2m2 0h5m1 0h1m-30 1h2m2 0h2m2 0h1m1 0h6m7 0h2m1 0h1m1 0h1m2 0h1m-32 1h1m1 0h2m3 0h2m3 0h4m1 0h2m1 0h1m1 0h5m3 0h1m1 0h4m-37 1h4m2 0h1m1 0h2m1 0h1m1 0h2m1 0h2m1 0h1m2 0h5m2 0h8m-37 1h1m3 0h1m2 0h1m2 0h1m2 0h2m1 0h1m1 0h2m1 0h2m2 0h4m1 0h3m1 0h3m-36 1h3m2 0h2m2 0h1m1 0h3m1 0h1m1 0h1m4 0h1m2 0h1m1 0h2m1 0h1m2 0h2m-35 1h4m2 0h1m2 0h3m2 0h1m1 0h3m2 0h3m3 0h1m1 0h1m1 0h1m2 0h2m-37 1h2m2 0h3m1 0h1m2 0h2m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h3m-35 1h4m2 0h2m1 0h2m1 0h1m3 0h5m2 0h1m1 0h2m2 0h1m5 0h1m-36 1h2m2 0h2m2 0h3m5 0h3m3 0h1m1 0h7m3 0h2m-36 1h1m2 0h2m1 0h1m3 0h4m5 0h4m4 0h1m3 0h2m1 0h1m-36 1h5m1 0h1m1 0h2m2 0h2m1 0h6m2 0h1m3 0h3m2 0h1m2 0h1m-34 1h1m4 0h2m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m5 0h1m1 0h3m-34 1h1m3 0h4m1 0h2m4 0h3m1 0h1m2 0h2m4 0h1m1 0h2m-31 1h1m3 0h2m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m6 0h2m1 0h1m2 0h3m-35 1h2m3 0h3m4 0h4m4 0h1m1 0h2m1 0h1m1 0h2m4 0h1m-33 1h2m1 0h1m1 0h1m2 0h1m2 0h3m2 0h1m2 0h4m1 0h1m2 0h1m2 0h2m1 0h2m-36 1h2m1 0h1m1 0h1m1 0h3m1 0h3m3 0h4m1 0h1m8 0h4m-36 1h1m1 0h1m2 0h1m2 0h2m4 0h1m3 0h1m4 0h1m2 0h2m1 0h1m1 0h3m-32 1h1m2 0h3m3 0h3m1 0h1m1 0h1m7 0h1m2 0h5m1 0h1m1 0h1m-29 1h2m3 0h1m3 0h9m2 0h1m3 0h3m1 0h1m-37 1h7m1 0h1m1 0h3m1 0h1m3 0h2m1 0h2m3 0h1m1 0h1m1 0h1m1 0h2m1 0h2m-37 1h1m5 0h1m3 0h2m2 0h2m12 0h1m3 0h2m1 0h1m-36 1h1m1 0h3m1 0h1m2 0h2m2 0h1m1 0h1m1 0h2m3 0h1m1 0h1m3 0h6m2 0h1m-37 1h1m1 0h3m1 0h1m1 0h13m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m-35 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m2 0h2m2 0h2m1 0h3m4 0h3m2 0h1m-36 1h1m5 0h1m3 0h1m2 0h3m1 0h1m2 0h2m3 0h2m2 0h3m1 0h2m-35 1h7m4 0h1m1 0h1m4 0h1m1 0h3m2 0h2m2 0h3m1 0h4"/></svg>
+</div>
+  <p class="scan">
+    <b>Мәзірді ашу үшін сканерлеңіз</b>
+    Отсканируйте, чтобы открыть меню<br>Scan to open the menu
+  </p>
+  <div class="foot">
+    <div class="orn"><b></b></div>
+    Жамбыл даңғылы 162 · +7 (700) 635-67-41<br>
+    <span class="gold">@chailat.kz</span>
+  </div>
+</div>
+</body>
+</html>
